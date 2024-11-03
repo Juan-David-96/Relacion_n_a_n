@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="my-4">Posts</h1>
+  <ul class="list-group">
+    <% @post.each do |post| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong><%= post.title %></strong>
+          <span class="badge bg-secondary ms-2">
+            <%= post.reactions.find_by(user_id: current_user.id)&.kind || 'Sin reacción' %>
+          </span>
+        </div>
+        <p class="mb-0">
+          <%= link_to "Mostrar este post", post, class: 'btn btn-link' %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+</div>
+

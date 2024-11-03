@@ -1,0 +1,10 @@
+
+<div class="container">
+  <ul class="list-inline">
+    <% Reaction.kinds.each do |kind| %>
+      <li class="list-inline-item">
+        <%= @post.count_with_kind(kind) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,83 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ /* */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+    margin: 0;
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #28a745;
+    margin: 20px 0;
+}
+ /* BARRA DE NAVEGACION*/
+.logo {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+    font-size: 30px;
+    color: #ffffff;
+}
+.menu {
+    font-size: 25px;
+}
+.navbar {
+    background-color: #343a40 !important; /* Fondo del navbar */
+}
+
+.navbar_saludo {
+    text-align: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+.navbar .nav-link {
+    color: #ffffff !important; /* Color del texto principal */
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active,
+.logo:hover {
+    color: #007bff !important; /* Color en hover o activo */
+}
+
+.dropdown-menu {
+    background-color: #ffffff !important; /* Fondo del menú desplegable */
+    border: 1px solid #dee2e6; /* Borde del menú desplegable */
+    position: absolute; /* Asegúrate de que esté en posición absoluta */
+    left: -55px !important; /* Alinea a la izquierda del elemento padre */ 
+}
+.dropdown-item {
+    font-size: 20px;
+    color: #212529 !important; /* Color del texto del menú desplegable */
+}
+.dropdown-item:hover {
+    background-color: #007bff; /* Fondo al pasar el mouse sobre el menú desplegable */
+    color: #ffffff !important;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}

@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <%= link_to 'Crazy4Cats', pages_index_path, class: "logo" %>
+        <div  class="navbar_saludo">
+                    <% if user_signed_in? %>
+                        Hola <%= current_user.email %>
+                    <% else %>  
+                        Dale registrate o conectate
+                    <% end %>
+            </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle menu" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">Menú</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <% if user_signed_in? %>
+                             <li class="nav-item">
+                                <%= link_to 'Tus reacciones', my_reactions_path, class: 'dropdown-item' %>
+                            </li>
+                            <li>
+                                <%= button_to 'Cerrar sesión', destroy_user_session_path, class: 'dropdown-item',
+                                    method: :delete %>
+                            </li>
+                        <% else %>
+                            <li>
+                                <%= link_to 'Iniciar sesión', new_user_session_path, class: 'dropdown-item' %>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <%= link_to 'Registro', new_user_registration_path, class: 'dropdown-item' %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

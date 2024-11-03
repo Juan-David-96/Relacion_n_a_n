@@ -1,0 +1,73 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="container mt-4">
+  <%= link_to "Back to posts", posts_path, class: "btn btn-secondary mb-3" %>
+  
+  <h1 class="mt-3">Título: <%= @post.title %></h1>
+  <p>Descripción: <%= @post.content %></p>
+  <p>Autor: <%= @post.user.present? ? @post.user.email : "Anónimo" %></p>
+
+  <% if user_signed_in? %>
+    <% if current_user.id == @post.user_id || current_user.role == 'admin' %>
+      <div class="mb-2 d-flex justify-content-start">
+        <%= link_to "Editar el Post", edit_post_path(@post), class: "btn btn-warning me-2" %>
+        <%= button_to "Eliminar el Post", @post, method: :delete, data: { confirm: "¿Está seguro que desea eliminar el post?" }, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+  <% end %>
+<%# Agregar reacion %>
+<div>
+  <%= render 'reactions/options' %>
+</div>
+
+<div>
+  <%= render 'reactions/counters' %>
+</div>
+
+
+<%# Agregar un comentario %>
+  <h2 class="mt-4">Agregar Comentario</h2>
+  <%= form_with(model: [ @post, Comment.new ], local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, "Nombre (opcional)" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    
+    <div class="mb-3">
+      <%= form.label :content %>
+      <%= form.text_area :content, class: "form-control", required: true %>
+    </div>
+    
+    <%= form.submit "Agregar Comentario", class: "btn btn-primary" %>
+  <% end %>
+
+  <h2 class="mt-4">Comentarios</h2>
+<ul class="list-group">
+  <% @post.comments.each do |comment| %>
+    <li class="list-group-item">
+      <strong><%= comment.name.present? ? comment.name : "Anónimo" %>:</strong>
+      <%= comment.content %>
+      
+      <% if user_signed_in? && (current_user.id == comment.user_id || current_user.role == 'admin') %>
+        <%= button_to "Eliminar", [comment.post, comment], method: :delete, data: { confirm: "¿Estás seguro de que deseas eliminar este comentario?" }, class: "btn btn-danger btn-sm float-end" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const deleteButton = document.getElementById('delete-post-<%= @post.id %>');
+    if (deleteButton) {
+      deleteButton.addEventListener('click', function(event) {
+        const confirmation = confirm("¿Está seguro que desea eliminar el post?");
+        if (!confirmation) {
+          event.preventDefault();
+        }
+      });
+    }
+  });
+</script>
+
+
+

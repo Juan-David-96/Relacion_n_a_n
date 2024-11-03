@@ -1,0 +1,10 @@
+<div class="container">
+  <ul class="list-inline">
+    <% Reaction.kinds.each do |kind| %>
+      <li class="list-inline-item">
+        <%= button_to "#{kind}", user_reaction_path(post_id: @post.id, kind: kind), method: :post, class: 'btn btn-outline-primary' %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+

@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Posts" %>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between mb-3">
+    <h1>Posts</h1>
+    <%= link_to 'New Post', new_post_path, class: 'btn btn-primary d-flex align-items-center justify-content-center' %>
+  </div>
+
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-4 mb-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= truncate(post.content, length: 100) %></p>
+            <%= link_to 'Show this post', post_path(post), class: 'btn btn-info text-white' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

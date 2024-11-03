@@ -1,0 +1,70 @@
+<div class="container mt-4">
+    <h2 class="text-center">Registro</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
+        <div class="mb-3">
+            <%= f.label :name, class: 'form-label' %>
+            <%= f.text_field :name, autocomplete: "new-name", class: 'form-control', required: true %>
+            <% if resource.errors[:name].any? %>
+                <div class="invalid-feedback"><%= resource.errors[:name].join(", ") %></div>
+            <% else %>
+                <div class="invalid-feedback">Por favor, ingresa un nombre válido.</div>
+            <% end %>
+        </div>
+        <div class="mb-3">
+            <%= f.label :email, class: 'form-label' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', required: true %>
+            <% if resource.errors[:email].any? %>
+                <div class="invalid-feedback"><%= resource.errors[:email].join(", ") %></div>
+            <% else %>
+                <div class="invalid-feedback">Por favor, ingresa un correo electrónico válido.</div>
+            <% end %>
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :password, class: 'form-label' %>
+            <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> caracteres mínimo)</em>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', required: true %>
+            <% if resource.errors[:password].any? %>
+                <div class="invalid-feedback"><%= resource.errors[:password].join(", ") %></div>
+            <% else %>
+                <div class="invalid-feedback">Por favor, ingresa una contraseña válida.</div>
+            <% end %>
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :password_confirmation, class: 'form-label' %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', required: true %>
+            <% if resource.errors[:password_confirmation].any? %>
+                <div class="invalid-feedback"><%= resource.errors[:password_confirmation].join(", ") %></div>
+            <% end %>
+            <div class="invalid-feedback">Por favor, confirma tu contraseña.</div>
+        </div>
+
+        <div class="text-center">
+            <%= f.submit "Registrarse", class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+
+    <div class="text-center mt-3">
+        <%= render "devise/shared/links" %>
+    </div>
+</div>
+
+<script>
+    (function () {
+        'use strict';
+        var forms = document.querySelectorAll('.needs-validation');
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
